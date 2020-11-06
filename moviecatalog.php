@@ -18,14 +18,14 @@ if($sortSelection=='DESC'){
 };
 if($sortCategory=='all'){
     $valueCategorySelector= '';
-}else{$valueCategorySelector= ' WHERE directors.id = '.$sortDirectors;
+}else{$valueCategorySelector= ' WHERE directors.id = '.$sortCategory;
 };
 
 /* selection quary */
-$sql_movies = "SELECT movies.*,directors.name 
+$sql_movies = "SELECT movies.*,category.name 
 FROM movies 
-INNER JOIN directors 
-ON movies.director_id=directors.id ".$valueCategorySelector.$valueSlection;
+INNER JOIN category
+ON movies.category=category.id ".$valueCategorySelector.$valueSlection;
 /* get data from database */
 $movies_data = mysqli_query($con,$sql_movies );
 
