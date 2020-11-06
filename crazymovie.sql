@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 01:56 PM
+-- Generation Time: Nov 06, 2020 at 04:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -59,6 +59,26 @@ CREATE TABLE `actor_movie_director` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `category`) VALUES
+(1, 'Action'),
+(2, 'Comedy'),
+(3, 'Animation');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `directors`
 --
 
@@ -97,7 +117,7 @@ CREATE TABLE `movies` (
   `imdb_link` varchar(255) NOT NULL,
   `trailer_link` varchar(255) NOT NULL,
   `poster` varchar(255) NOT NULL,
-  `category` varchar(255) NOT NULL,
+  `category` int(11) NOT NULL,
   `pegi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -106,11 +126,11 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `title`, `views`, `director_id`, `release_date`, `budget`, `description`, `imdb_link`, `trailer_link`, `poster`, `category`, `pegi`) VALUES
-(1, 'Kill Bill: Volume 1', 23164654, 1, 'October 10, 2003', 30000000, 'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.', 'https://www.imdb.com/title/tt0266697/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7kSuas6mRpk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killbillVolume1.jpg', 'Action', 18),
-(2, 'Kill Bill: Volume 2', 651616161, 1, 'April 16, 2004', 30000000, 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.', 'https://www.imdb.com/title/tt0378194/?ref_=nv_sr_srsg_0', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WTt8cCIvGYI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killBillVolume2.jpg', 'Action', 18),
-(3, 'Pulp Fiction', 654984, 1, 'October 14, 1994', 8000000, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'https://www.imdb.com/title/tt0110912/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/s7EdQ4FqbhY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'pulpFiction.jpg', 'Action', 18),
-(4, 'Spirited Away', 1564213, 2, 'July 20, 2001', 2000000, 'During her family\'s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.', 'https://www.imdb.com/title/tt0245429/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ByXuk9QqQkk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'spiriteAaway.jpg', 'Anmation', 3),
-(5, 'The Mask', 1651654, 3, 'July 29, 1994', 23000000, 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.', 'https://www.imdb.com/title/tt0110475/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LZl69yk5lEY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'theMask.jpg', 'Comedy', 12);
+(1, 'Kill Bill: Volume 1', 23164654, 1, 'October 10, 2003', 30000000, 'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.', 'https://www.imdb.com/title/tt0266697/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7kSuas6mRpk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killbillVolume1.jpg', 1, 18),
+(2, 'Kill Bill: Volume 2', 651616161, 1, 'April 16, 2004', 30000000, 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.', 'https://www.imdb.com/title/tt0378194/?ref_=nv_sr_srsg_0', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WTt8cCIvGYI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killBillVolume2.jpg', 1, 18),
+(3, 'Pulp Fiction', 654984, 1, 'October 14, 1994', 8000000, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'https://www.imdb.com/title/tt0110912/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/s7EdQ4FqbhY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'pulpFiction.jpg', 1, 18),
+(4, 'Spirited Away', 1564213, 2, 'July 20, 2001', 2000000, 'During her family\'s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.', 'https://www.imdb.com/title/tt0245429/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ByXuk9QqQkk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'spiriteAaway.jpg', 1, 3),
+(5, 'The Mask', 1651654, 3, 'July 29, 1994', 23000000, 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.', 'https://www.imdb.com/title/tt0110475/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LZl69yk5lEY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'theMask.jpg', 1, 12);
 
 -- --------------------------------------------------------
 
@@ -168,6 +188,13 @@ ALTER TABLE `actor_movie_director`
   ADD KEY `movie_id` (`movie_id`);
 
 --
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `directors`
 --
 ALTER TABLE `directors`
@@ -179,7 +206,8 @@ ALTER TABLE `directors`
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `director_id` (`director_id`);
+  ADD KEY `director_id` (`director_id`),
+  ADD KEY `category` (`category`);
 
 --
 -- Indexes for table `movie_in_playlist`
@@ -216,7 +244,8 @@ ALTER TABLE `actor_movie_director`
 -- Constraints for table `movies`
 --
 ALTER TABLE `movies`
-  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`director_id`) REFERENCES `directors` (`director_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`director_id`) REFERENCES `directors` (`director_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `movie_in_playlist`
