@@ -1,45 +1,66 @@
 <?php
-
-$sortSelection=$_POST['sortSelection'];
-$sortCategory=$_POST['category'];
+/* $searchMovie = $_POST['searchMovie'];
+$filterSelection = $_POST['filterSelection'];
+$filterCategory = $_POST['filterCategory']; */
+$searchMovie = '';
+$filterSelection = 'DESC';
+$filterCategory = 'all';
 
 
 require_once 'database.php';
 
-if (!$conn) {
-    die("Connection failed:some thing is wrong with connection.");
-  }
-/* what was selected */
-if($sortSelection=='ASC'){  
-    $valueSlection= ' ORDER BY title ASC';
+if(!$conn){
+    die("Connection failed: Some wrong with conection.");
 };
-if($sortSelection=='DESC'){
-    $valueSlection= ' ORDER BY title DESC';
+/* selection */
+if($filterSelection == 'ASC'){
+    $valueFilterSelection = " ORDER BY title ASC";
 };
-if($sortCategory=='all'){
-    $valueCategorySelector= '';
-}else{$valueCategorySelector= ' WHERE directors.id = '.$sortCategory;
+if ($filterSelection == 'DESC') {
+    $valueFilterSelection = " ORDER BY title DESC";
 };
+if ($filterCategory == 'all') {
+    $valueFilterCategory = "";
+} else {
+    $valueFilterCategory = " WHERE movies.category_id= " . $filterCategory;
+};
+if(empty($searchMovie)){
+    $valuesearchMovie="";
+}else{
+    $valuesearchMovie=" AND movies.title 
+                        LIKE '%$searchMovie%' ";
+}
 
-/* selection quary */
-$sql_movies = "SELECT movies.*,category.name 
+/* query of movies */
+$sql_movies = "SELECT movies.*,category.category
 FROM movies 
-INNER JOIN category
-ON movies.category=category.id ".$valueCategorySelector.$valueSlection;
+INNER JOIN category 
+ON movies.category_id=category.id " . $valueFilterCategory . $valuesearchMovie. $valueFilterSelection;
 /* get data from database */
-$movies_data = mysqli_query($con,$sql_movies );
 
-/* write to array data */
-$movies_arr=array();
-while($row = mysqli_fetch_assoc($movies_data) ){
-     $movies_arr[]=[
-         "title"=>$row['title'],
-         "director"=>$row['name'],
-         "views"=>$row['views'],
-         "poster"=>$row['poster']
-        ];
-   }
-   /* convert to jsaon */
-echo json_encode($movies_arr); 
-mysqli_close($con);
+$moviesData = mysqli_query($conn, $sql_movies);
+
+
+$moviesArray=array();
+$i=0;
+while($row=mysqli_fetch_assoc($moviesData)){
+    $i++;
+    $moviesArray[]=[
+        'id'=>$row['id'],
+        'title'=>$row['title'],
+        'views'=>$row['views'],
+        'release_date'=>$row['release_date'],
+        'budget'=>$row['budget'],
+        'description'=>$row['description'],
+        'imdb_link'=>$row['imdb_link'],
+        //'trailer_link'=>$row['trailer_link'],
+        'poster'=>$row['poster'],
+        'category_id'=>$row['category_id'],
+        'category'=>$row['category'],
+        'pegi'=>$row['pegi']
+    ];
+};
+echo $i;
+echo json_encode($moviesArray);
+mysqli_close($conn);
 ?>
