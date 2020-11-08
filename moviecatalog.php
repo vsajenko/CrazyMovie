@@ -1,10 +1,10 @@
 <?php
-/* $searchMovie = $_POST['searchMovie'];
+$searchMovie = $_POST['searchMovie'];
 $filterSelection = $_POST['filterSelection'];
-$filterCategory = $_POST['filterCategory']; */
-$searchMovie = '';
+$filterCategory = $_POST['filterCategory'];
+/* $searchMovie = 's';
 $filterSelection = 'DESC';
-$filterCategory = 'all';
+$filterCategory = 'all'; */
 
 
 require_once 'database.php';
@@ -40,11 +40,9 @@ ON movies.category_id=category.id " . $valueFilterCategory . $valuesearchMovie. 
 
 $moviesData = mysqli_query($conn, $sql_movies);
 
-
 $moviesArray=array();
-$i=0;
+
 while($row=mysqli_fetch_assoc($moviesData)){
-    $i++;
     $moviesArray[]=[
         'id'=>$row['id'],
         'title'=>$row['title'],
@@ -60,7 +58,7 @@ while($row=mysqli_fetch_assoc($moviesData)){
         'pegi'=>$row['pegi']
     ];
 };
-echo $i;
+
 echo json_encode($moviesArray);
 mysqli_close($conn);
 ?>
