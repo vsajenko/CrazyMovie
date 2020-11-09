@@ -13,6 +13,7 @@ if(!$conn){
     die("Connection failed: Some wrong with conection.");
 };
 /* selection */
+
 if($filterSelection == 'ASC'){
     $valueFilterSelection = " ORDER BY title ASC";
 };
@@ -46,16 +47,16 @@ while($row=mysqli_fetch_assoc($moviesData)){
     $moviesArray[]=[
         'id'=>$row['id'],
         'title'=>$row['title'],
-        'views'=>$row['views'],
-        'release_date'=>$row['release_date'],
-        'budget'=>$row['budget'],
-        'description'=>$row['description'],
-        'imdb_link'=>$row['imdb_link'],
+        //'views'=>$row['views'],
+        //'release_date'=>$row['release_date'],
+        //'budget'=>$row['budget'],
+        //'description'=>$row['description'],
+        //'imdb_link'=>$row['imdb_link'],
         //'trailer_link'=>$row['trailer_link'],
         'poster'=>$row['poster'],
         'category_id'=>$row['category_id'],
         'category'=>$row['category'],
-        'pegi'=>$row['pegi']
+        //'pegi'=>$row['pegi']
     ];
 };
 
