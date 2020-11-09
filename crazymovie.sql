@@ -2,10 +2,10 @@
 -- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 09 nov. 2020 à 16:13
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Nov 09, 2020 at 04:45 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `crazymovie`
+-- Database: `crazymovie`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `actors`
+-- Table structure for table `actors`
 --
 
 CREATE TABLE `actors` (
@@ -37,7 +37,7 @@ CREATE TABLE `actors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `actors`
+-- Dumping data for table `actors`
 --
 
 INSERT INTO `actors` (`id`, `name`, `gender`, `nationality`, `status`, `picture`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `actors` (`id`, `name`, `gender`, `nationality`, `status`, `picture`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `actor_movie_director`
+-- Table structure for table `actor_movie_director`
 --
 
 CREATE TABLE `actor_movie_director` (
@@ -61,7 +61,7 @@ CREATE TABLE `actor_movie_director` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `actor_movie_director`
+-- Dumping data for table `actor_movie_director`
 --
 
 INSERT INTO `actor_movie_director` (`actor_id`, `movie_id`) VALUES
@@ -76,7 +76,7 @@ INSERT INTO `actor_movie_director` (`actor_id`, `movie_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -85,7 +85,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `category`) VALUES
@@ -101,7 +101,7 @@ INSERT INTO `category` (`id`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `directors`
+-- Table structure for table `directors`
 --
 
 CREATE TABLE `directors` (
@@ -114,7 +114,7 @@ CREATE TABLE `directors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `directors`
+-- Dumping data for table `directors`
 --
 
 INSERT INTO `directors` (`id`, `name`, `nationality`, `status`, `description`, `picture`) VALUES
@@ -126,7 +126,7 @@ INSERT INTO `directors` (`id`, `name`, `nationality`, `status`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `movies`
+-- Table structure for table `movies`
 --
 
 CREATE TABLE `movies` (
@@ -145,7 +145,7 @@ CREATE TABLE `movies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `movies`
+-- Dumping data for table `movies`
 --
 
 INSERT INTO `movies` (`id`, `title`, `views`, `director_id`, `release_date`, `budget`, `description`, `imdb_link`, `trailer_link`, `poster`, `category_id`, `pegi`) VALUES
@@ -162,7 +162,7 @@ INSERT INTO `movies` (`id`, `title`, `views`, `director_id`, `release_date`, `bu
 -- --------------------------------------------------------
 
 --
--- Structure de la table `movie_in_playlist`
+-- Table structure for table `movie_in_playlist`
 --
 
 CREATE TABLE `movie_in_playlist` (
@@ -173,7 +173,7 @@ CREATE TABLE `movie_in_playlist` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `playlist`
+-- Table structure for table `playlist`
 --
 
 CREATE TABLE `playlist` (
@@ -186,7 +186,7 @@ CREATE TABLE `playlist` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -198,44 +198,44 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `userName`, `email`, `age`, `password`) VALUES
 (3, 'user3', 'user3@gmail.com', '1999-09-30', '$2y$10$I/PUx2CWzJTzq6ti7ciy0.Vd.sKgq8OJ3U7pq8Ol.6tBO.vgEir4m');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `actors`
+-- Indexes for table `actors`
 --
 ALTER TABLE `actors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `actor_movie_director`
+-- Indexes for table `actor_movie_director`
 --
 ALTER TABLE `actor_movie_director`
   ADD KEY `director_id` (`actor_id`,`movie_id`),
   ADD KEY `movie_id` (`movie_id`);
 
 --
--- Index pour la table `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Index pour la table `directors`
+-- Indexes for table `directors`
 --
 ALTER TABLE `directors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `movies`
+-- Indexes for table `movies`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`),
@@ -244,92 +244,92 @@ ALTER TABLE `movies`
   ADD KEY `category` (`category_id`);
 
 --
--- Index pour la table `movie_in_playlist`
+-- Indexes for table `movie_in_playlist`
 --
 ALTER TABLE `movie_in_playlist`
   ADD KEY `playlist_id` (`playlist_id`),
   ADD KEY `movie_id` (`movie_id`);
 
 --
--- Index pour la table `playlist`
+-- Indexes for table `playlist`
 --
 ALTER TABLE `playlist`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `actors`
+-- AUTO_INCREMENT for table `actors`
 --
 ALTER TABLE `actors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT pour la table `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT pour la table `directors`
+-- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `movies`
+-- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT pour la table `playlist`
+-- AUTO_INCREMENT for table `playlist`
 --
 ALTER TABLE `playlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `actor_movie_director`
+-- Constraints for table `actor_movie_director`
 --
 ALTER TABLE `actor_movie_director`
   ADD CONSTRAINT `actor_movie_director_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `actor_movie_director_ibfk_2` FOREIGN KEY (`actor_id`) REFERENCES `actors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `movies`
+-- Constraints for table `movies`
 --
 ALTER TABLE `movies`
   ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`director_id`) REFERENCES `directors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `movies_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `movie_in_playlist`
+-- Constraints for table `movie_in_playlist`
 --
 ALTER TABLE `movie_in_playlist`
   ADD CONSTRAINT `movie_in_playlist_ibfk_1` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `movie_in_playlist_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `playlist`
+-- Constraints for table `playlist`
 --
 ALTER TABLE `playlist`
   ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
