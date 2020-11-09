@@ -2,10 +2,10 @@
 -- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 04:32 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 09 nov. 2020 à 16:13
+-- Version du serveur :  10.4.14-MariaDB
+-- Version de PHP : 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,17 +18,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `crazymovie`
+-- Base de données : `crazymovie`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `actors`
+-- Structure de la table `actors`
 --
 
 CREATE TABLE `actors` (
-  `actor_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
@@ -37,18 +37,22 @@ CREATE TABLE `actors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `actors`
+-- Déchargement des données de la table `actors`
 --
 
-INSERT INTO `actors` (`actor_id`, `name`, `gender`, `nationality`, `status`, `picture`) VALUES
+INSERT INTO `actors` (`id`, `name`, `gender`, `nationality`, `status`, `picture`) VALUES
 (1, 'Jim Carrey', 'Male', 'Canada', 'Still a life', 'jimCarrey.jpg'),
 (2, 'Cameron Diaz', 'Female', 'USA', 'Still a life', 'cameronDiaz.jpg'),
-(3, 'Peter Greene', 'Male', 'USA', 'Still a life', 'peterGreene.jpg');
+(3, 'Peter Greene', 'Male', 'USA', 'Still a life', 'peterGreene.jpg'),
+(4, 'John Travolta', 'male', 'USA', 'In activity', 'travolta.png'),
+(5, 'Uma Thurman', 'Female', 'USA', 'In activity', 'umaTruman.png'),
+(7, 'Samuel Lee Jackson', 'Male', 'USA', 'In activity', 'samuelLeeJackson.png'),
+(8, 'Bruce Willis', 'Male', 'USA', 'Alive in Activity', 'bruceWillis.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `actor_movie_director`
+-- Structure de la table `actor_movie_director`
 --
 
 CREATE TABLE `actor_movie_director` (
@@ -56,10 +60,23 @@ CREATE TABLE `actor_movie_director` (
   `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `actor_movie_director`
+--
+
+INSERT INTO `actor_movie_director` (`actor_id`, `movie_id`) VALUES
+(1, 5),
+(4, 3),
+(5, 1),
+(5, 2),
+(5, 3),
+(5, 3),
+(7, 3);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Structure de la table `category`
 --
 
 CREATE TABLE `category` (
@@ -68,22 +85,27 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `category`
+-- Déchargement des données de la table `category`
 --
 
 INSERT INTO `category` (`id`, `category`) VALUES
 (1, 'Action'),
 (2, 'Comedy'),
-(3, 'Animation');
+(3, 'Animation'),
+(4, 'Fantasy'),
+(5, 'Horror'),
+(6, 'Romance'),
+(7, 'Thriller'),
+(8, 'Drama');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `directors`
+-- Structure de la table `directors`
 --
 
 CREATE TABLE `directors` (
-  `director_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -92,18 +114,19 @@ CREATE TABLE `directors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `directors`
+-- Déchargement des données de la table `directors`
 --
 
-INSERT INTO `directors` (`director_id`, `name`, `nationality`, `status`, `description`, `picture`) VALUES
+INSERT INTO `directors` (`id`, `name`, `nationality`, `status`, `description`, `picture`) VALUES
 (1, 'Quentin Tarantino', 'USA', 'Still a life', 'Director\r\nwriter\r\nproducer\r\nactor', 'tarantino.jpg'),
 (2, 'Hayao Miyazaki', 'Japanese', 'Still a life', 'Animator, filmmaker, screen writer, author manga, artist', 'hayaoMiyazaki.jpg'),
-(3, 'Chuck Russell', 'USA', 'Still a life', 'Film director, producer, screenwriter, actor', 'chuckRussell.jpg');
+(3, 'Chuck Russell', 'USA', 'Still a life', 'Film director, producer, screenwriter, actor', 'chuckRussell.jpg'),
+(4, 'George Lucas', 'USA', 'Still a life', 'George Walton Lucas Jr. is an American film director, producer, screenwriter, and entrepreneur. Lucas is best known for creating the Star Wars and Indiana Jones franchises and founding Lucasfilm, LucasArts, and Industrial Light & Magic', 'georgelucas.jp');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movies`
+-- Structure de la table `movies`
 --
 
 CREATE TABLE `movies` (
@@ -111,31 +134,35 @@ CREATE TABLE `movies` (
   `title` varchar(255) NOT NULL,
   `views` int(11) NOT NULL,
   `director_id` int(11) NOT NULL,
-  `release_date` varchar(255) NOT NULL,
+  `release_date` date NOT NULL,
   `budget` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `imdb_link` varchar(255) NOT NULL,
   `trailer_link` varchar(255) NOT NULL,
   `poster` varchar(255) NOT NULL,
-  `category` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `pegi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `movies`
+-- Déchargement des données de la table `movies`
 --
 
-INSERT INTO `movies` (`id`, `title`, `views`, `director_id`, `release_date`, `budget`, `description`, `imdb_link`, `trailer_link`, `poster`, `category`, `pegi`) VALUES
-(1, 'Kill Bill: Volume 1', 23164654, 1, 'October 10, 2003', 30000000, 'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.', 'https://www.imdb.com/title/tt0266697/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7kSuas6mRpk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killbillVolume1.jpg', 1, 18),
-(2, 'Kill Bill: Volume 2', 651616161, 1, 'April 16, 2004', 30000000, 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.', 'https://www.imdb.com/title/tt0378194/?ref_=nv_sr_srsg_0', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WTt8cCIvGYI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killBillVolume2.jpg', 1, 18),
-(3, 'Pulp Fiction', 654984, 1, 'October 14, 1994', 8000000, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'https://www.imdb.com/title/tt0110912/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/s7EdQ4FqbhY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'pulpFiction.jpg', 1, 18),
-(4, 'Spirited Away', 1564213, 2, 'July 20, 2001', 2000000, 'During her family\'s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.', 'https://www.imdb.com/title/tt0245429/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ByXuk9QqQkk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'spiriteAaway.jpg', 1, 3),
-(5, 'The Mask', 1651654, 3, 'July 29, 1994', 23000000, 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.', 'https://www.imdb.com/title/tt0110475/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LZl69yk5lEY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'theMask.jpg', 1, 12);
+INSERT INTO `movies` (`id`, `title`, `views`, `director_id`, `release_date`, `budget`, `description`, `imdb_link`, `trailer_link`, `poster`, `category_id`, `pegi`) VALUES
+(1, 'Kill Bill: Volume 1', 23164654, 1, '0000-00-00', 30000000, 'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.', 'https://www.imdb.com/title/tt0266697/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7kSuas6mRpk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killbillVolume1.jpg', 1, 18),
+(2, 'Kill Bill: Volume 2', 651616161, 1, '0000-00-00', 30000000, 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.', 'https://www.imdb.com/title/tt0378194/?ref_=nv_sr_srsg_0', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WTt8cCIvGYI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killBillVolume2.jpg', 1, 18),
+(3, 'Pulp Fiction', 654984, 1, '0000-00-00', 8000000, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'https://www.imdb.com/title/tt0110912/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/s7EdQ4FqbhY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'pulpFiction.jpg', 1, 18),
+(4, 'Spirited Away', 1564213, 2, '0000-00-00', 2000000, 'During her family\'s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.', 'https://www.imdb.com/title/tt0245429/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ByXuk9QqQkk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'spiriteAaway.jpg', 3, 3),
+(5, 'The Mask', 1651654, 3, '0000-00-00', 23000000, 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.', 'https://www.imdb.com/title/tt0110475/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LZl69yk5lEY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'theMask.jpg', 2, 12),
+(6, 'Star Wars: The Phantom Menace', 1145, 4, '0000-00-00', 115000000, 'Two Jedi escape a hostile blockade to find allies and come across a young boy who may bring balance to the Force, but the long dormant Sith resurface to claim their original glory.', 'https://www.imdb.com/title/tt0120915/?ref_=kw_li_tt', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bD7bpG-zDJQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeIThePhantom.jpg', 4, 7),
+(7, 'Star Wars: Episode IV - A New Hope', 773733, 4, '0000-00-00', 275000000, 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire\'s world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.', 'https://www.imdb.com/title/tt0076759/?ref_=nm_flmg_wr_155', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/vZ734NWnAHA\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeIVANewHope.jpg', 4, 7),
+(8, 'Star Wars: Episode V - The Empire Strikes Back', 757575, 4, '0000-00-00', 550000000, 'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader and a bounty hunter named Boba Fett all over the galaxy.', 'https://www.imdb.com/title/tt0080684/?ref_=nm_flmg_wr_151', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JNwNXF9Y6kY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeVTheEmpireStrikesBack.jpg', 4, 7),
+(9, 'Star Wars: Episode VI - Return of the Jedi', 537753, 4, '0000-00-00', 475000000, 'After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor\'s trap.', 'https://www.imdb.com/title/tt0086190/?ref_=nm_flmg_wr_147', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7L8p7_SLzvU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeVIReturnoftheJedi.jpg', 4, 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie_in_playlist`
+-- Structure de la table `movie_in_playlist`
 --
 
 CREATE TABLE `movie_in_playlist` (
@@ -146,7 +173,7 @@ CREATE TABLE `movie_in_playlist` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist`
+-- Structure de la table `playlist`
 --
 
 CREATE TABLE `playlist` (
@@ -159,103 +186,150 @@ CREATE TABLE `playlist` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `user_name` varchar(255) NOT NULL,
+  `userName` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `age` int(2) NOT NULL,
-  `password` varchar(12) NOT NULL
+  `age` date NOT NULL,
+  `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `userName`, `email`, `age`, `password`) VALUES
+(3, 'user3', 'user3@gmail.com', '1999-09-30', '$2y$10$I/PUx2CWzJTzq6ti7ciy0.Vd.sKgq8OJ3U7pq8Ol.6tBO.vgEir4m');
+
+--
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `actors`
+-- Index pour la table `actors`
 --
 ALTER TABLE `actors`
-  ADD PRIMARY KEY (`actor_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `actor_movie_director`
+-- Index pour la table `actor_movie_director`
 --
 ALTER TABLE `actor_movie_director`
   ADD KEY `director_id` (`actor_id`,`movie_id`),
   ADD KEY `movie_id` (`movie_id`);
 
 --
--- Indexes for table `category`
+-- Index pour la table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `directors`
+-- Index pour la table `directors`
 --
 ALTER TABLE `directors`
-  ADD PRIMARY KEY (`director_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `movies`
+-- Index pour la table `movies`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `director_id` (`director_id`),
-  ADD KEY `category` (`category`);
+  ADD KEY `category` (`category_id`);
 
 --
--- Indexes for table `movie_in_playlist`
+-- Index pour la table `movie_in_playlist`
 --
 ALTER TABLE `movie_in_playlist`
   ADD KEY `playlist_id` (`playlist_id`),
   ADD KEY `movie_id` (`movie_id`);
 
 --
--- Indexes for table `playlist`
+-- Index pour la table `playlist`
 --
 ALTER TABLE `playlist`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- Constraints for table `actor_movie_director`
+-- AUTO_INCREMENT pour la table `actors`
 --
-ALTER TABLE `actor_movie_director`
-  ADD CONSTRAINT `actor_movie_director_ibfk_1` FOREIGN KEY (`actor_id`) REFERENCES `actors` (`actor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `actor_movie_director_ibfk_3` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `actors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for table `movies`
+-- AUTO_INCREMENT pour la table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pour la table `directors`
+--
+ALTER TABLE `directors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `movies`
 --
 ALTER TABLE `movies`
-  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`director_id`) REFERENCES `directors` (`director_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints for table `movie_in_playlist`
+-- AUTO_INCREMENT pour la table `playlist`
+--
+ALTER TABLE `playlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `actor_movie_director`
+--
+ALTER TABLE `actor_movie_director`
+  ADD CONSTRAINT `actor_movie_director_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actor_movie_director_ibfk_2` FOREIGN KEY (`actor_id`) REFERENCES `actors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `movies`
+--
+ALTER TABLE `movies`
+  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`director_id`) REFERENCES `directors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `movies_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `movie_in_playlist`
 --
 ALTER TABLE `movie_in_playlist`
   ADD CONSTRAINT `movie_in_playlist_ibfk_1` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `movie_in_playlist_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `playlist`
+-- Contraintes pour la table `playlist`
 --
 ALTER TABLE `playlist`
   ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
