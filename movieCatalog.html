@@ -39,6 +39,9 @@
         </select>
     </form>
     <hr>
+    <div id="information">
+
+    </div>
     <!-- All info from database will shown here in moviesContainer -->
     <div id="moviesContainer">
 
@@ -50,6 +53,14 @@
     <script>
         $(function(){
             /* default all movies */
+            $.ajax({
+
+            }).done(function(result){
+
+            }).fail(function(result){
+
+            })
+            /* ------------ */
             $.ajax({
                     url:'moviecatalog.php',
                     method:'post',
