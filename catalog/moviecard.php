@@ -11,7 +11,7 @@ if ($_SESSION['adminStatus']) {
     $status = 'display:none';
 };
 /* conect to database */
-$movieId = '4';
+$movieId = '1';
 require_once 'database.php';
 /* get data by query  for movie info*/
 $sql_movie = "SELECT movies.*,category.category,directors.name
@@ -44,7 +44,7 @@ $sql_actors = "SELECT actors.name
 FROM movies
 INNER JOIN actor_movie_director ON movies.id=actor_movie_director.movie_id
 INNER JOIN actors ON actors.id=actor_movie_director.actor_id
-WHERE movies.id=4";
+WHERE movies.id=$movieId";
 $resultActors = mysqli_query($conn, $sql_actors);
 /* put data to array */
 while ($row = mysqli_fetch_assoc($resultActors)) {

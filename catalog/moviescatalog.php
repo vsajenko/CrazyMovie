@@ -11,25 +11,7 @@ if ($_SESSION['adminStatus']) {
     $status = 'display:none';
 };
 
-/* connect to database */
-require_once 'database.php';
 
-/* count catgerory type */
-$sql_movie = "SELECT movies.*
-FROM movies";
-/* put data to array */
-$result = mysqli_query($conn, $sql_movie);
-$moviesArray = array();
-$numberOfMovies = mysqli_num_rows($result);
-while ($row = mysqli_fetch_assoc($result)) {
-    $moviesArray[] = [
-        'id' => $row['id'],
-        'title' => $row['title'],
-        'poster' => $row['poster'],
-    ];
-};
-echo json_encode($moviesArray);
-mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,24 +30,17 @@ mysqli_close($conn);
     <main>
         <section>
             <h2>Here we write texts for people information</h2>
-            <form action="">
+            <form action="" method="post">
                 <input type="text" name="search" id="search" placeholder="Search">
                 <input type="submit" name="okBtn" value="OK">
             </form>
-            <article id="category">
-
+<!-- template and the list of all movies -->
+            <article id="allmovieslist">
+                <div id="template"></div>
             </article>
-            <article id="movieArea" >
-                <div id="template">
-                    <div id="tempHeader">
-                        <h2 id="movienumber">#1 </h2>
-                        <h2 id="movieTitle"> Title of movies </h2>
-                    </div>
-                    <img src="../images/movies/theMask.jpg" alt="">
-                </div>
-            </article>
-
         </section>
+<!-- Page Buttons on the  -->        
+        <section id="buttons"></section>
     </main>
     <!-- add footer-->
     <?php require_once 'footer.html'; ?>
@@ -73,29 +48,56 @@ mysqli_close($conn);
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
 </script>
 <script>
-    /* for (let i = 0; i < 9; i++) {
-        $('#template').clone().appendTo("#movieArea");
-
-    } */
+$(function(){
+   /* default  */
     $.ajax({
-                    url:'moviecatalog.php',
-                    method:'post',
-                    dataType:'json'
-
-            }).done(function(result){
-                
-                console.log(result);
-                $.each(result, function(key, movie){
-                    
-                    $('#moviesContainer').append('<h3> #' + movie.id +' Title: '+ movie.title+'</h3>');
-                    $('#moviesContainer').append('<img src="../images/movies/'+ movie.poster+'" alt="">');
-                    $('#moviesContainer').append('<hr>'); 
-                   
-                });
-            }).fail(function(result){
+            url:'allmoviescounting.php',
+            method:'post',
+            dataType:'json'
+        }).done(function(result){   
+            console.log(result);
+            $.each(result, function(key, movie){
+                console.log(movie);
+                $('#template').append('<h3> #' + movie.id +' Title: '+ movie.title+'</h3>');
+                $('#template').append('<img src="../images/movies/'+ movie.poster+'" alt="">');
+                let newCard=$('#template')
+                newCard.clone().appendTo("#allmovieslist");
+                $('#template').html('');
+            });
+            $('#template').remove();
+        }).fail(function(result){
                 // If AJAX failed
                 console.log('AJAX ERROR: movies ' + result);
-            });
+        });
+/* ----------------------------- */
+    $.ajax({
+            url:'countpages.php',
+            dataType:'json'
+        }).done(function(result){
+            console.log(result);
+            let rowcountAllMovies=result['0'];
+            let countingPages=result['1'];
+            let moduleOfCounting=result['2'];
+            console.log(rowcountAllMovies);
+            console.log(countingPages);
+            console.log(moduleOfCounting);
+            
+            $('#buttons').append('<p>['+rowcountAllMovies+' movies]</p>');
+            
+            for (let i = 1; i <= countingPages; i++) {
+                //$('#buttons').append('<input type="submit" name="'+ i +'" class="button" value="'+ i +'">');
+                $('#buttons').append('<button type="button" class="button" value="'+i+'">'+i+'</button>');
+            };
+            $('#buttons').append('<p>['+countingPages+'pages]</p>');
+            
+              
+            
+        }).fail(function(result){
+                // If AJAX failed
+                console.log('AJAX ERROR: pages ' + result);
+        });
+
+});
 </script>
 
 </html>

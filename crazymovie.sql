@@ -3,15 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< Updated upstream
--- Generation Time: Nov 09, 2020 at 07:31 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
-=======
--- Generation Time: Nov 09, 2020 at 04:45 PM
+-- Generation Time: Nov 10, 2020 at 02:46 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
->>>>>>> Stashed changes
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,7 +43,11 @@ CREATE TABLE `actors` (
 INSERT INTO `actors` (`id`, `name`, `gender`, `nationality`, `status`, `picture`) VALUES
 (1, 'Jim Carrey', 'Male', 'Canada', 'Still a life', 'jimCarrey.jpg'),
 (2, 'Cameron Diaz', 'Female', 'USA', 'Still a life', 'cameronDiaz.jpg'),
-(3, 'Peter Greene', 'Male', 'USA', 'Still a life', 'peterGreene.jpg');
+(3, 'Peter Greene', 'Male', 'USA', 'Still a life', 'peterGreene.jpg'),
+(4, 'John Travolta', 'male', 'USA', 'In activity', 'travolta.png'),
+(5, 'Uma Thurman', 'Female', 'USA', 'In activity', 'umaTruman.png'),
+(7, 'Samuel Lee Jackson', 'Male', 'USA', 'In activity', 'samuelLeeJackson.png'),
+(8, 'Bruce Willis', 'Male', 'USA', 'Alive in Activity', 'bruceWillis.png');
 
 -- --------------------------------------------------------
 
@@ -62,8 +60,6 @@ CREATE TABLE `actor_movie_director` (
   `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-<<<<<<< Updated upstream
-=======
 --
 -- Dumping data for table `actor_movie_director`
 --
@@ -77,7 +73,6 @@ INSERT INTO `actor_movie_director` (`actor_id`, `movie_id`) VALUES
 (5, 3),
 (7, 3);
 
->>>>>>> Stashed changes
 -- --------------------------------------------------------
 
 --
@@ -137,7 +132,7 @@ INSERT INTO `directors` (`id`, `name`, `nationality`, `status`, `description`, `
 CREATE TABLE `movies` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `views` int(11) NOT NULL,
+  `views` varchar(255) NOT NULL,
   `director_id` int(11) NOT NULL,
   `release_date` date NOT NULL,
   `budget` int(11) NOT NULL,
@@ -154,15 +149,15 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `title`, `views`, `director_id`, `release_date`, `budget`, `description`, `imdb_link`, `trailer_link`, `poster`, `category_id`, `pegi`) VALUES
-(1, 'Kill Bill: Volume 1', 23164654, 1, '0000-00-00', 30000000, 'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.', 'https://www.imdb.com/title/tt0266697/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7kSuas6mRpk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killbillVolume1.jpg', 1, 18),
-(2, 'Kill Bill: Volume 2', 651616161, 1, '0000-00-00', 30000000, 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.', 'https://www.imdb.com/title/tt0378194/?ref_=nv_sr_srsg_0', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WTt8cCIvGYI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killBillVolume2.jpg', 1, 18),
-(3, 'Pulp Fiction', 654984, 1, '0000-00-00', 8000000, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'https://www.imdb.com/title/tt0110912/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/s7EdQ4FqbhY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'pulpFiction.jpg', 1, 18),
-(4, 'Spirited Away', 1564213, 2, '0000-00-00', 2000000, 'During her family\'s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.', 'https://www.imdb.com/title/tt0245429/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ByXuk9QqQkk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'spiriteAaway.jpg', 3, 3),
-(5, 'The Mask', 1651654, 3, '0000-00-00', 23000000, 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.', 'https://www.imdb.com/title/tt0110475/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LZl69yk5lEY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'theMask.jpg', 2, 12),
-(6, 'Star Wars: The Phantom Menace', 1145, 4, '0000-00-00', 115000000, 'Two Jedi escape a hostile blockade to find allies and come across a young boy who may bring balance to the Force, but the long dormant Sith resurface to claim their original glory.', 'https://www.imdb.com/title/tt0120915/?ref_=kw_li_tt', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bD7bpG-zDJQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeIThePhantom.jpg', 4, 7),
-(7, 'Star Wars: Episode IV - A New Hope', 773733, 4, '0000-00-00', 275000000, 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire\'s world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.', 'https://www.imdb.com/title/tt0076759/?ref_=nm_flmg_wr_155', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/vZ734NWnAHA\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeIVANewHope.jpg', 4, 7),
-(8, 'Star Wars: Episode V - The Empire Strikes Back', 757575, 4, '0000-00-00', 550000000, 'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader and a bounty hunter named Boba Fett all over the galaxy.', 'https://www.imdb.com/title/tt0080684/?ref_=nm_flmg_wr_151', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JNwNXF9Y6kY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeVTheEmpireStrikesBack.jpg', 4, 7),
-(9, 'Star Wars: Episode VI - Return of the Jedi', 537753, 4, '0000-00-00', 475000000, 'After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor\'s trap.', 'https://www.imdb.com/title/tt0086190/?ref_=nm_flmg_wr_147', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7L8p7_SLzvU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeVIReturnoftheJedi.jpg', 4, 7);
+(1, 'Kill Bill: Volume 1', '23164654', 1, '0000-00-00', 30000000, 'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.', 'https://www.imdb.com/title/tt0266697/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7kSuas6mRpk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killbillVolume1.jpg', 1, 18),
+(2, 'Kill Bill: Volume 2', '651616161', 1, '0000-00-00', 30000000, 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.', 'https://www.imdb.com/title/tt0378194/?ref_=nv_sr_srsg_0', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WTt8cCIvGYI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'killBillVolume2.jpg', 1, 18),
+(3, 'Pulp Fiction', '654984', 1, '0000-00-00', 8000000, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'https://www.imdb.com/title/tt0110912/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/s7EdQ4FqbhY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'pulpFiction.jpg', 1, 18),
+(4, 'Spirited Away', '1564213', 2, '0000-00-00', 2000000, 'During her family\'s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.', 'https://www.imdb.com/title/tt0245429/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ByXuk9QqQkk\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'spiriteAaway.jpg', 3, 3),
+(5, 'The Mask', '1651654', 3, '0000-00-00', 23000000, 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.', 'https://www.imdb.com/title/tt0110475/?ref_=fn_al_tt_1', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LZl69yk5lEY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'theMask.jpg', 2, 12),
+(6, 'Star Wars: The Phantom Menace', '1145', 4, '0000-00-00', 115000000, 'Two Jedi escape a hostile blockade to find allies and come across a young boy who may bring balance to the Force, but the long dormant Sith resurface to claim their original glory.', 'https://www.imdb.com/title/tt0120915/?ref_=kw_li_tt', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bD7bpG-zDJQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeIThePhantom.jpg', 4, 7),
+(7, 'Star Wars: Episode IV - A New Hope', '773733', 4, '0000-00-00', 275000000, 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire\'s world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.', 'https://www.imdb.com/title/tt0076759/?ref_=nm_flmg_wr_155', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/vZ734NWnAHA\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeIVANewHope.jpg', 4, 7),
+(8, 'Star Wars: Episode V - The Empire Strikes Back', '757575', 4, '0000-00-00', 550000000, 'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader and a bounty hunter named Boba Fett all over the galaxy.', 'https://www.imdb.com/title/tt0080684/?ref_=nm_flmg_wr_151', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JNwNXF9Y6kY\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeVTheEmpireStrikesBack.jpg', 4, 7),
+(9, 'Star Wars: Episode VI - Return of the Jedi', '537753', 4, '0000-00-00', 475000000, 'After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor\'s trap.', 'https://www.imdb.com/title/tt0086190/?ref_=nm_flmg_wr_147', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7L8p7_SLzvU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'starWarsEpisodeVIReturnoftheJedi.jpg', 4, 7);
 
 -- --------------------------------------------------------
 
@@ -196,15 +191,13 @@ CREATE TABLE `playlist` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `user_name` varchar(255) NOT NULL,
+  `userName` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `age` date NOT NULL,
-  `password` varchar(12) NOT NULL
+  `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
-<<<<<<< Updated upstream
-=======
 -- Dumping data for table `users`
 --
 
@@ -212,7 +205,6 @@ INSERT INTO `users` (`id`, `userName`, `email`, `age`, `password`) VALUES
 (3, 'user3', 'user3@gmail.com', '1999-09-30', '$2y$10$I/PUx2CWzJTzq6ti7ciy0.Vd.sKgq8OJ3U7pq8Ol.6tBO.vgEir4m');
 
 --
->>>>>>> Stashed changes
 -- Indexes for dumped tables
 --
 
@@ -279,7 +271,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -309,7 +301,7 @@ ALTER TABLE `playlist`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

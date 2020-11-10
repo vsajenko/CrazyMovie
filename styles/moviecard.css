@@ -86,11 +86,13 @@ margin-top: 10px;
 height:200px;
 }
 footer{
+    
     background-image: url(../images/background/filmstripe.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position:left top;
     height:60px;
+    
     padding: 10px;
     text-align: center;
 }
