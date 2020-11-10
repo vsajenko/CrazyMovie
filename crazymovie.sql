@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< Updated upstream
 -- Generation Time: Nov 09, 2020 at 07:31 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
+=======
+-- Generation Time: Nov 09, 2020 at 04:45 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
+>>>>>>> Stashed changes
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,6 +62,22 @@ CREATE TABLE `actor_movie_director` (
   `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< Updated upstream
+=======
+--
+-- Dumping data for table `actor_movie_director`
+--
+
+INSERT INTO `actor_movie_director` (`actor_id`, `movie_id`) VALUES
+(1, 5),
+(4, 3),
+(5, 1),
+(5, 2),
+(5, 3),
+(5, 3),
+(7, 3);
+
+>>>>>>> Stashed changes
 -- --------------------------------------------------------
 
 --
@@ -181,6 +203,16 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+<<<<<<< Updated upstream
+=======
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `userName`, `email`, `age`, `password`) VALUES
+(3, 'user3', 'user3@gmail.com', '1999-09-30', '$2y$10$I/PUx2CWzJTzq6ti7ciy0.Vd.sKgq8OJ3U7pq8Ol.6tBO.vgEir4m');
+
+--
+>>>>>>> Stashed changes
 -- Indexes for dumped tables
 --
 

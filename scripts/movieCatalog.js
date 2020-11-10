@@ -16,7 +16,11 @@
             })
             /* ------------ */
             $.ajax({
+<<<<<<< Updated upstream
                     url:'moviecatalog.php',
+=======
+                    url:'moviecatalog1.php',
+>>>>>>> Stashed changes
                     method:'post',
                     data:{filterSelection:'ASC', 
                         filterCategory:'all',
@@ -30,7 +34,11 @@
                 $.each(result, function(key, movie){
                     
                     $('#moviesContainer').append('<h3> #' + movie.id +' Title: '+ movie.title+'</h3>');
+<<<<<<< Updated upstream
                     $('#moviesContainer').append('<img src="images/movies/'+ movie.poster+'" alt="">');
+=======
+                    $('#moviesContainer').append('<img src="../images/movies/'+ movie.poster+'" alt="">');
+>>>>>>> Stashed changes
                     $('#moviesContainer').append('<hr>'); 
                    
                 });
@@ -52,7 +60,11 @@
 /*---------sorting functions ASC or DSC------------------------- */
 $('#filterSelection').change(function(){
             $.ajax({
+<<<<<<< Updated upstream
                     url:'moviecatalog.php',
+=======
+                    url:'moviecatalog1.php',
+>>>>>>> Stashed changes
                     method:'post',
                     data:{ filterSelection:$('#filterSelection').val(),
                         filterCategory:$('#filterCategory').val(),
@@ -63,7 +75,11 @@ $('#filterSelection').change(function(){
                     $('#moviesContainer').html('')
                     $.each(result, function (key, movie) {
                         $('#moviesContainer').append('<h3> #' + movie.id + ' Title: ' + movie.title + '</h3>');
+<<<<<<< Updated upstream
                         $('#moviesContainer').append('<img src="images/movies/' + movie.poster + '" alt="">');
+=======
+                        $('#moviesContainer').append('<img src="../images/movies/' + movie.poster + '" alt="">');
+>>>>>>> Stashed changes
                         $('#moviesContainer').append('<hr>'); 
                         });
                 }).fail(function (result) {
@@ -73,7 +89,11 @@ $('#filterSelection').change(function(){
 /* -----------sorting function by categoryes-------------------------------- */
             $('#filterCategory').change(function(){
                 $.ajax({
+<<<<<<< Updated upstream
                     url:'moviecatalog.php',
+=======
+                    url:'moviecatalog1.php',
+>>>>>>> Stashed changes
                     method:'post',
                     data: { filterSelection:$('#filterSelection').val(), 
                             filterCategory: $(this).val(),
@@ -86,7 +106,11 @@ $('#filterSelection').change(function(){
                     $.each(result, function (key, movie) {
                         //$('#moviesContainer').append('<div style="display: flex;"><img src="images/movies/' + movie.poster + '" alt=""><div><h3 h3 > #' + movie.id + ' Title: ' + movie.title + '</h3><p>Views: ' + movie.views + '</p></div></div>');
                             $('#moviesContainer').append(' <h3> #' + movie.id + ' Title: ' + movie.title + '</h3>');
+<<<<<<< Updated upstream
                             $('#moviesContainer').append('<img src="images/movies/' + movie.poster + '" alt="">');
+=======
+                            $('#moviesContainer').append('<img src="../images/movies/' + movie.poster + '" alt="">');
+>>>>>>> Stashed changes
                             $('#moviesContainer').append('<hr>'); 
                         });
                 }).fail(function(result){
@@ -96,7 +120,11 @@ $('#filterSelection').change(function(){
 /* ------------Searching in the database--------------------------------- */
             $('#searchMovie').keyup(function(){
                 $.ajax({
+<<<<<<< Updated upstream
                     url: 'moviecatalog.php',
+=======
+                    url: 'moviecatalog1.php',
+>>>>>>> Stashed changes
                     method:'post',
                     data:{ searchMovie:$(this).val(),
                         filterSelection:$('#filterSelection').val(),
@@ -112,7 +140,11 @@ $('#filterSelection').change(function(){
                         console.log(movie.title);
 
                         $('#moviesContainer').append('<h3> #' + movie.id + ' Title: ' + movie.title + '</h3>');
+<<<<<<< Updated upstream
                         $('#moviesContainer').append('<img src="images/movies/' + movie.poster + '" alt="">');
+=======
+                        $('#moviesContainer').append('<img src="../images/movies/' + movie.poster + '" alt="">');
+>>>>>>> Stashed changes
                         $('#moviesContainer').append('<hr>');
                     });
                 }).fail(function(result){

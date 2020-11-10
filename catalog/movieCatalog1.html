@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/movieCatalog1.css">
+    <title>Crazy Movie Catalog</title>
+</head>
+<header>
+    <ul>
+        <li>
+            <h3>CrayMovie</h3>
+        </li>
+        <li>
+            <nav>
+                <a href="">Play list</a>
+                <a href="">logout</a>
+            </nav>
+        </li>
+        
+    </ul>
+    <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">Edit movie</a></li>
+        <li></li>
+    </ul>
+</header>
+<body>
+    <h1>Movie database</h1>
+    <form action="" method="POST">
+        <!-- Search input -->
+        <label for="searchMovie">Search bar: </label>
+        <input type="text" name="searchMovie" id="searchMovie" placeholder="Search the movie">
+        <br>
+        <!-- sort by categories -->
+        <label for="filterCategory">Sorting by: </label>
+        <select name="filterCategory" id="filterCategory">
+            <option value="all">All category</option>
+        </select>
+        <!-- sort by from up to down or from down to top-->
+        <select name="filterSelection" id="filterSelection">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+        </select>
+    </form>
+    <hr>
+    <section id=movieContainer>
+        <template class="movieCard">
+            <h2 class="movieNumber">#1</h2>
+            <h2 class="movieTitle">Killbil volum1</h2>
+            <img class="moviePicture" src="../images/movies/killbillVolume1.jpg" alt="">
+        </template>
+    </section>
+    <!-- All info from database will shown here in moviesContainer -->
+    <div id="moviesContainer">
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+    </script>
+    <script src="../scripts/movieCatalog.js"></script>
+ 
+</body>
+</html>
